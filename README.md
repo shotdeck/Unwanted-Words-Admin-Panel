@@ -11,7 +11,7 @@ A Flutter web application for managing unwanted words in the ShotDeck search sys
 - **Search**: Quickly find words with real-time search filtering
 - **Super Blacklist**: Flag words for stricter matching (substring matching)
 - **CSV Import**: Bulk import words from CSV files with dry-run preview
-- **Password Protection**: Secure access with locally-stored authentication
+- **Password Protection**: Secure access with API-based authentication
 - **Dark Theme**: Modern UI matching ShotDeck's brand aesthetic
 
 ## Live Demo
@@ -38,13 +38,7 @@ The application is deployed at: https://unwantedwords-admin-app-94hv16ib.devinap
    flutter pub get
    ```
 
-3. Configure the application password:
-   ```bash
-   cp lib/config.example.dart lib/config.dart
-   ```
-   Then edit `lib/config.dart` and set your password.
-
-4. Run the application:
+3. Run the application:
    ```bash
    flutter run -d chrome
    ```
@@ -57,7 +51,7 @@ flutter build web --release
 
 ## Configuration
 
-The API base URL is configured in `lib/main.dart`. The application password is stored in `lib/config.dart` (not committed to version control).
+The API base URL is configured in `lib/main.dart`. Password validation is handled via the API endpoint.
 
 ## API Endpoints
 
