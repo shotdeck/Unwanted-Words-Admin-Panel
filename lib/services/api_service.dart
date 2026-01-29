@@ -91,6 +91,26 @@ class ApiService {
     }
   }
 
+  Future<bool> checkPassword(String password) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/api/Search/check-unwanted-words-password?password=${Uri.encodeComponent(password)}'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final result = json.decode(response.body);
+      if (result is bool) {
+        return result;
+      }
+      return result == true || result == 'true';
+    } else {
+      throw ApiException(
+        statusCode: response.statusCode,
+        message: _parseErrorMessage(response.body),
+      );
+    }
+  }
+
   Future<ImportResult> importCsv({
     required Uint8List fileBytes,
     required String fileName,
